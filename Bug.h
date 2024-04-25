@@ -22,6 +22,8 @@ public:
 
     virtual void display();
     virtual void move() = 0;
+
+    int getBugID() const;
 };
 
 #endif // BUG_H

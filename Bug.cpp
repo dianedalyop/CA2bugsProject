@@ -26,3 +26,6 @@ void Bug::display() {
     }
     std::cout << "\nSize: " << size << "\n";
 }
+int Bug::getBugID() const {
+    return bugID;
+}

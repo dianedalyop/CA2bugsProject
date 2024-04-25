@@ -12,6 +12,7 @@ public:
     void addBug(Bug* bug);
     void displayBugs();
     void moveBugs();
+    Bug* findBugByID(int id);
 };
 
 #endif // BOARD_H
