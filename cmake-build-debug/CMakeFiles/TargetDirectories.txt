@@ -1,0 +1,3 @@
+C:/Users/DIANE J DALYOP/CLionProjects/CA2bugsProject/cmake-build-debug/CMakeFiles/CA2bugsProject.dir
+C:/Users/DIANE J DALYOP/CLionProjects/CA2bugsProject/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/DIANE J DALYOP/CLionProjects/CA2bugsProject/cmake-build-debug/CMakeFiles/rebuild_cache.dir
