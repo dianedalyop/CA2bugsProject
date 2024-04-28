@@ -7,6 +7,10 @@
 Bug::Bug(char t, int id, int xx, int yy, Direction d, int s)
         : type(t), bugID(id), x(xx), y(yy), direction(d), size(s) {}
 
+int Bug::getSize() const {
+    return size;
+}
+
 int Bug::getY() const {
     return y;
 }
@@ -16,10 +20,10 @@ int Bug::getX() const {
 }
 
 void Bug::display() {
-    std::cout << "Type: " << type << "\n";
-    std::cout << "Bug ID: " << bugID << "\n";
-    std::cout << "X coordinate: " << x << "\n";
-    std::cout << "Y coordinate: " << y << "\n";
+    std::cout << "Type: " << type << " : ";
+    std::cout << "Bug ID: " << bugID << " : ";
+    std::cout << "X coordinate: " << x << " : ";
+    std::cout << "Y coordinate: " << y << " : ";
     std::cout << "Direction: ";
     switch (direction) {
         case NORTH:
@@ -45,20 +49,18 @@ void Bug::move() {
     // Update bug position based on its direction and board dimensions
     switch (direction) {
         case NORTH:
-            if (y > 0) y--; // Move up if not at the top boundary
+            if (y > 0) y--;
             break;
         case EAST:
-            if (x < Board::BOARD_WIDTH - 1) x++; // Move right if not at the right boundary
+            if (x < Board::BOARD_WIDTH - 1) x++;
             break;
         case SOUTH:
-            if (y < Board::BOARD_HEIGHT - 1) y++; // Move down if not at the bottom boundary
+            if (y < Board::BOARD_HEIGHT - 1) y++;
             break;
         case WEST:
-            if (x > 0) x--; // Move left if not at the left boundary
+            if (x > 0) x--;
             break;
     }
-
-    // After moving, add the current position to the path history
     addPosHistory();
 }
 
@@ -66,10 +68,12 @@ void Bug::addPosHistory() {
     pathHistory.push_back(std::make_pair(x, y));
 }
 
-void Bug::displayPathHistory() {
-    std::cout << "Adding position to path history for Bug " << bugID << ": (" << x << ", " << y << ")\n";
-    for (const auto& position : pathHistory) {
-        std::cout << "(" << position.first << ", " << position.second << ")\n";
-    }
+void Bug::displayPathHistory(){
+
+        std::cout << "Path history for Bug " << bugID << " : " << getX() << " " << getY()<< " \n";
+        for (const auto& position : pathHistory) {
+            std::cout << "(" << position.first << ", " << position.second << ")\n";
+        }
+
 }
 

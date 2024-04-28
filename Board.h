@@ -12,9 +12,9 @@ public:
 
 public:
     void addBug(Bug* bug);
-    void displayBugs();
-    void moveBugs();
-    Bug* findBugByID(int id);
+    void displayBugs() const;
+    void moveBugs() const;
+    Bug* findBugByID(int id) const;
     void bugsInteraction();
 
     static constexpr int BOARD_WIDTH = 10;

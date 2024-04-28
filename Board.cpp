@@ -1,5 +1,6 @@
 #include "Board.h"
 #include <iostream>
+#include "Bug.h"
 using namespace std;
 
 
@@ -7,15 +8,15 @@ void Board::addBug(Bug* bug) {
     bugs.push_back(bug);
 }
 // displaying my bugs
-void Board::displayBugs() {
+void Board::displayBugs() const {
     cout<<"Bug Initial Details"<<endl;
     for (Bug* bug : bugs) {
         bug->display();
-        std::cout << "\n";
+        std::cout << " : ";
     }
 }
 // moving bugs
-void Board::moveBugs() {
+void Board::moveBugs() const{
     for (Bug* bug : bugs) {
         bug->move();
     }
@@ -23,7 +24,7 @@ void Board::moveBugs() {
 
 // find bug by ID
 
-Bug* Board::findBugByID (int id) {
+Bug* Board::findBugByID (int id) const {
     for(Bug* bug: bugs) {
         if(bug->getBugID() == id){
             return bug;
@@ -33,19 +34,30 @@ Bug* Board::findBugByID (int id) {
 }
 
 void Board::bugsInteraction() {
-    std::cout << "Checking for bug interactions...\n";
-    for (size_t i = 0; i < bugs.size(); ++i) {
-        for (size_t j = i + 1; j < bugs.size(); ++j) {
-            if (bugs[i]->getX() == bugs[j]->getX() && bugs[i]->getY() == bugs[j]->getY()) {
-                std::cout << "Collision detected between Bug " << bugs[i]->getBugID() << " and Bug " << bugs[j]->getBugID() << "\n";
-                // Handle collision logic here
-            }
+    for (int x = 0; x < 10; ++x) {
+        for (int y = 0; y < 10; ++y) {
+            std::vector<Bug *> bugsInCell = getBugs();
 
+
+            if (bugsInCell.size() > 1) {
+                Bug *largestBug = bugsInCell[0];
+                for (size_t i = 1; i < bugsInCell.size(); ++i) {
+                    if (bugsInCell[i]->getSize() > largestBug->getSize()) {
+                        largestBug = bugsInCell[i];
+                    }
+                }
+
+                // result of the fight
+                std::cout << "Bug " << largestBug->getBugID() << " wins in cell (" << x << ", " << y << ") against:";
+                for (size_t i = 0; i < bugsInCell.size(); ++i) {
+                    if (bugsInCell[i] != largestBug) {
+                        std::cout << " Bug " << bugsInCell[i]->getBugID();
+                    }
+                }
+                std::cout << std::endl;
+            }
         }
     }
-
-        std::cout << "No More bug interactions Detected " << endl;
-
 }
 
 const vector<Bug *> &Board::getBugs() const {

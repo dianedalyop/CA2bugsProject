@@ -39,6 +39,8 @@ public:
     void addPosHistory();
 
     void displayPathHistory();
+
+    int getSize() const;
 };
 
 #endif // BUG_H
