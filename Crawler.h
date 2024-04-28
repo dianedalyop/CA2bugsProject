@@ -6,6 +6,9 @@
 class Crawler : public Bug {
 public:
     Crawler(char t, int id, int xx, int yy, Direction d, int s);
+
+    Crawler(char t, int xx, int yy, Direction d, int s);
+
     void move() override;
 };
 

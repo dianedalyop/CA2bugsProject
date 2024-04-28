@@ -5,6 +5,8 @@
 
 class Hopper : public Bug {
 private:
+    Hopper(char t, int xx, int yy, Direction d, int s, int hLength);
+
     int hopLength;
 
 public:
